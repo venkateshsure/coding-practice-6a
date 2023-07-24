@@ -182,7 +182,7 @@ app.get("/districts/:districtId/details/", async (req, res) => {
 
   const query = `
              SELECT state.state_name FROM state INNER JOIN district ON state.state_id=district.state_id 
-              WHERE state.state_id=${districtId} GROUP BY state.state_name
+              WHERE district.district_id=${districtId}
              ;`;
   const response = await db.get(query);
   res.send({ stateName: response["state_name"] });
